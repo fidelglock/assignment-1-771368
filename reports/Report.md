@@ -4,6 +4,7 @@
 ## **Part 1 - Design (weighted factor for grades = 2)**
 ### **1. Design and explain interactions between main components in your architecture of mysimbdp (1 point)**
 
+![Design](/reports/BDPDesign.png)
 
 
 
@@ -35,36 +36,12 @@ Considering the number of advantages of Cloud Services, this project uses MongoD
 The dataset "Indoor Location Detection dataset" has been used here that contains 4 basic attributes: part_id, ts_date, ts_time and room, total 4 columns.
 Below shown code has been written in JavaScript to define the schema: -
 **A. LocData.js defines the schema data type**
-var mongoose = require("mongoose");
 
-var LocSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  part_id: {
-    type: String,
-    required: true
-  },
-  ts_date: String,
-  ts_time: String,
-  room: String
-});
-
-var LocData = mongoose.model("Location Data", LocSchema);
-
-module.exports = LocData;
+![Schema1](/reports/Schema1.png)
 
 **B. Template.js provides the structure that matches to that of the uploadable csv file**
-var json2csv = require("json2csv");
 
-exports.get = function(req, res) {
-  var fields = ["part_id", "ts_date", "ts_time", "room"];
-
-  var csv = json2csv({ data: "", fields: fields });
-
-  res.set("Content-Disposition", "attachment;filename=IndoorLocDetDataset.csv");
-  res.set("Content-Type", "application/octet-stream");
-
-  res.send(csv);
-};
+![Schema2](/reports/Schema2.png)
 
 ### **2. Explain how would you partition the data in mysimbdp-coredms into different shards/partitions (1 point)**
 Sharding is a scaling technique involving splitting of a very large dataset and storing the parts in different databases distributed across several machines forming a cluster of database systems that are capable of storing Big Data. The Dataset used here has 4160 rows that got imported in less than 2 seconds which means that the system design is far too capable for handling this dataset and so the Sharding was not required. Considering the capability of Cloud VM, the hypothetical dataset has to be extremely large as compared to the provided dataset in order to be sharded vertically and horizontally and maintained in separate servers.
@@ -77,6 +54,7 @@ C. upload.js reads the csv data and sends to index.js: -
 ### **4. Given your deployment environment, show the uploading performance (response time and failure) of the tests for 1,5, 10, .., n of concurrent mysimbdp-dataingest pushing data into mysimbdp-coredms (1 point)**
 No failures or errors were encountered so far. Response time is less than a second although there was a slight spike observed in the Graphs shown below that happen at the same time indicating that the database server is utilizing resources.
 
+![chartmongo](/reports/mongochart.png)
 
 
 
