@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Indoor Location Detection Dataset</title>
+  </head>
+  <body>
+    <h1>Please fill data in the form below:</h1>
+    <form method="POST" action="/post-feedback">
+      <label>part_id:<input type="text" name="part_id" required/></label>
+      <br />
+      <label>ts_date:<input type="text" name="ts_date" required/></label>
+      <br />
+      <label>ts_time:<input type="text" name="ts_time" required/></label>
+      <br />
+      <label>room:<input type="text" name="room" required/></label>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    <a href="/view-data">View feedbacks</a>
+  </body>
+</html>
